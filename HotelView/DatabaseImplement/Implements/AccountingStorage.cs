@@ -18,6 +18,11 @@ namespace DatabaseImplement.Implements
                 return context.Accounting.Select(rec => new AccountingViewModel
                 {
                     Id = rec.Id,
+                    Clientid = rec.Clientid,
+                    Startdate = rec.Startdate,
+                    Cost = rec.Cost,
+                    Enddate = rec.Enddate,
+                    Roomid = rec.Roomid
                 })
                 .ToList();
             }

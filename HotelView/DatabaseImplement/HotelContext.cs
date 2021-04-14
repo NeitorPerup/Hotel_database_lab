@@ -116,12 +116,17 @@ namespace DatabaseImplement
                     .HasColumnName("name")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Pasport).HasColumnName("pasport");
+                entity.Property(e => e.Pasport)
+                    .IsRequired()
+                    .HasColumnName("pasport")
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasColumnName("password")
                     .HasMaxLength(255);
+
+                entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.Property(e => e.Surname)
                     .IsRequired()

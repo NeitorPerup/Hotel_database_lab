@@ -7,6 +7,7 @@ using System.Linq;
 using BusinessLogic.ViewModels;
 using BusinessLogic.BindingModels;
 using BusinessLogic.BusinessLogic;
+using BusinessLogic.Enums;
 using Unity;
 using System.Windows.Forms;
 
@@ -20,6 +21,7 @@ namespace HotelView
         {
             _clientLogic = userLogic;
             InitializeComponent();
+            comboBoxRoles.Items.AddRange(new string[] { "Клиент", "Администратор" });
         }
 
         private void buttonSignUp_Click(object sender, EventArgs e)
@@ -36,10 +38,14 @@ namespace HotelView
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            if (string.IsNullOrEmpty(comboBoxRoles.Text))
+            {
+                MessageBox.Show("Необходимо выбрать роль", "Ошибка",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
-                var t = _clientLogic.Read(null);
                 ClientBindingModel model = new ClientBindingModel
                 {
                     Email = textBoxEmail.Text,
@@ -48,7 +54,8 @@ namespace HotelView
                     Surname = "",
                     Middlename = "",
                     Birthday = DateTime.Now,
-                    Pasport = 0
+                    Pasport = "",
+                    Status = (UserRoles)Enum.Parse(typeof(UserRoles), comboBoxRoles.Text)
                 };
                 _clientLogic.CreateOrUpdate(model);
                 Program.Client = _clientLogic.Read(model)?[0];
@@ -57,7 +64,7 @@ namespace HotelView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException?.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

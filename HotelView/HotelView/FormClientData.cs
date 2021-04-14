@@ -18,7 +18,7 @@ namespace HotelView
         public FormClientData(ClientLogic clientLogic)
         {
             _clientLogic = clientLogic;
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace HotelView
                     Name = textBoxName.Text,
                     Surname = textBoxSurname.Text,
                     Middlename = textBoxMiddlename.Text,
-                    Pasport = Convert.ToInt32(textBoxPasport.Text),
+                    Pasport = (textBoxPasport.Text),
                     Birthday = dateTimePicker.Value
                 };
                 _clientLogic.CreateOrUpdate(client);
@@ -58,6 +58,20 @@ namespace HotelView
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void FormClientData_Load(object sender, EventArgs e)
+        {
+            if (Program.Client == null)
+            {
+                return;
+            }
+            var client = Program.Client;
+            textBoxName.Text = client.Name;
+            textBoxSurname.Text = client.Surname;
+            textBoxMiddlename.Text = client.Middlename;
+            textBoxPasport.Text = client.Pasport;
+            dateTimePicker.Value = client.Birthday;
         }
     }
 }

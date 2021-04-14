@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BusinessLogic.Interfaces;
 using BusinessLogic.BindingModels;
+using BusinessLogic.Enums;
 using BusinessLogic.ViewModels;
 using System.Linq;
 using DatabaseImplement.Models;
@@ -15,10 +16,7 @@ namespace DatabaseImplement.Implements
         {
             using (var context = new HotelContext())
             {
-                return context.Client.Select(rec => new ClientViewModel
-                {
-                    Id = rec.Id,
-                })
+                return context.Client.Include(x => x.Accounting).Select(CreateModel)
                 .ToList();
             }
         }
@@ -31,17 +29,9 @@ namespace DatabaseImplement.Implements
             }
             using (var context = new HotelContext())
             {
-                return context.Client
+                return context.Client.Include(x => x.Accounting)
                 .Where(rec => rec.Birthday == model.Birthday)
-                .Select(rec => new ClientViewModel
-                {
-                    Id = rec.Id,
-                    Name = rec.Name,
-                    Surname = rec.Surname,
-                    Middlename = rec.Middlename,
-                    Pasport = rec.Pasport,
-                    Birthday = rec.Birthday
-                })
+                .Select(CreateModel)
                 .ToList();
             }
         }
@@ -54,20 +44,9 @@ namespace DatabaseImplement.Implements
             }
             using (var context = new HotelContext())
             {
-                var client = context.Client
+                var client = context.Client.Include(x => x.Accounting)
                 .FirstOrDefault(rec => rec.Id == model.Id || rec.Email == model.Email);
-                return client != null ?
-                new ClientViewModel
-                {
-                    Id = client.Id,
-                    Name = client.Name,
-                    Surname = client.Surname,
-                    Middlename = client.Middlename,
-                    Pasport = client.Pasport,
-                    Birthday = client.Birthday,
-                    Email = client.Email,
-                    Password = client.Password
-                } :
+                return client != null ? CreateModel(client) :
                 null;
             }
         }
@@ -121,7 +100,24 @@ namespace DatabaseImplement.Implements
             client.Birthday = model.Birthday;
             client.Email = model.Email;
             client.Password = model.Password;
+            client.Status = Convert.ToInt32(model.Status);
             return client;
+        }
+
+        private ClientViewModel CreateModel(Client client)
+        {
+            ClientViewModel model = new ClientViewModel();
+            model.Id = client.Id;
+            model.Name = client.Name;
+            model.Surname = client.Surname;
+            model.Middlename = client.Middlename;
+            model.Accounting = client.Accounting.ToDictionary(x => x.Id, x => x.Cost);
+            model.Pasport = client.Pasport;
+            model.Birthday = client.Birthday;
+            model.Email = client.Email;
+            model.Password = client.Password;
+            model.Status = (UserRoles)Enum.Parse(typeof(UserRoles), client.Status.ToString());           
+            return model;
         }
     }
 }

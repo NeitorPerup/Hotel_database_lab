@@ -19,9 +19,10 @@ namespace DatabaseImplement.Models
         public string Surname { get; set; }
         public string Middlename { get; set; }
         public DateTime Birthday { get; set; }
-        public int Pasport { get; set; }
+        public string Pasport { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public int Status { get; set; }
 
         public virtual ICollection<Accounting> Accounting { get; set; }
     }

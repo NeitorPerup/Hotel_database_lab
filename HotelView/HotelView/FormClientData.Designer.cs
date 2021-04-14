@@ -151,6 +151,7 @@ namespace HotelView
             this.Controls.Add(this.buttonSave);
             this.Name = "FormClientData";
             this.Text = "FormClientData";
+            this.Load += new System.EventHandler(this.FormClientData_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

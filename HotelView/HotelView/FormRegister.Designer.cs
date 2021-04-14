@@ -34,6 +34,8 @@ namespace HotelView
             this.buttonSignUp = new System.Windows.Forms.Button();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.comboBoxRoles = new System.Windows.Forms.ComboBox();
+            this.labelRole = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelPassword
@@ -56,7 +58,7 @@ namespace HotelView
             // 
             // buttonSignUp
             // 
-            this.buttonSignUp.Location = new System.Drawing.Point(94, 124);
+            this.buttonSignUp.Location = new System.Drawing.Point(89, 146);
             this.buttonSignUp.Name = "buttonSignUp";
             this.buttonSignUp.Size = new System.Drawing.Size(124, 27);
             this.buttonSignUp.TabIndex = 10;
@@ -78,11 +80,30 @@ namespace HotelView
             this.textBoxEmail.Size = new System.Drawing.Size(100, 20);
             this.textBoxEmail.TabIndex = 8;
             // 
+            // comboBoxRoles
+            // 
+            this.comboBoxRoles.FormattingEnabled = true;
+            this.comboBoxRoles.Location = new System.Drawing.Point(104, 115);
+            this.comboBoxRoles.Name = "comboBoxRoles";
+            this.comboBoxRoles.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxRoles.TabIndex = 13;
+            // 
+            // labelRole
+            // 
+            this.labelRole.AutoSize = true;
+            this.labelRole.Location = new System.Drawing.Point(22, 123);
+            this.labelRole.Name = "labelRole";
+            this.labelRole.Size = new System.Drawing.Size(32, 13);
+            this.labelRole.TabIndex = 14;
+            this.labelRole.Text = "Роль";
+            // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(309, 195);
+            this.Controls.Add(this.labelRole);
+            this.Controls.Add(this.comboBoxRoles);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelEmail);
             this.Controls.Add(this.buttonSignUp);
@@ -101,5 +122,7 @@ namespace HotelView
         private System.Windows.Forms.Button buttonSignUp;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.TextBox textBoxEmail;
+        private System.Windows.Forms.ComboBox comboBoxRoles;
+        private System.Windows.Forms.Label labelRole;
     }
 }

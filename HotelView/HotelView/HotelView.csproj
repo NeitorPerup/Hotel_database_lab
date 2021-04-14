@@ -153,11 +153,29 @@
     <Compile Include="FormAutorization.Designer.cs">
       <DependentUpon>FormAutorization.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCategories.Designer.cs">
+      <DependentUpon>FormCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCategory.Designer.cs">
+      <DependentUpon>FormCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormClientData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormClientData.Designer.cs">
       <DependentUpon>FormClientData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormClientRentRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClientRentRoom.Designer.cs">
+      <DependentUpon>FormClientRentRoom.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -176,8 +194,17 @@
     <EmbeddedResource Include="FormAutorization.resx">
       <DependentUpon>FormAutorization.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCategories.resx">
+      <DependentUpon>FormCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCategory.resx">
+      <DependentUpon>FormCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormClientData.resx">
       <DependentUpon>FormClientData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClientRentRoom.resx">
+      <DependentUpon>FormClientRentRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
