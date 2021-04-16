@@ -16,17 +16,7 @@ namespace DatabaseImplement.Implements
         {
             using (var context = new HotelContext())
             {
-                return context.Room.Include(x => x.Category).Select(rec => new RoomViewModel
-                {
-                    Id = rec.Id,
-                    Available = Convert.ToBoolean(rec.Available),
-                    Categoryid = rec.Categoryid,
-                    Number = rec.Number,
-                    Type = rec.Category.Type,
-                    RoomNumber = rec.Category.Roomnumber,
-                    Price = rec.Category.Price,
-                    Sleepingberths = rec.Category.Sleepingberths
-                })
+                return context.Room.Include(x => x.Category).Select(CreateFullModel)
                 .ToList();
             }
         }
@@ -40,18 +30,8 @@ namespace DatabaseImplement.Implements
             using (var context = new HotelContext())
             {
                 return context.Room.Include(x => x.Category)
-                .Where(rec => Convert.ToBoolean(rec.Available) == model.Available)
-                .Select(rec => new RoomViewModel
-                {
-                    Id = rec.Id,
-                    Available = Convert.ToBoolean(rec.Available),
-                    Categoryid = rec.Categoryid,
-                    Number = rec.Number,
-                    Type = rec.Category.Type,
-                    RoomNumber = rec.Category.Roomnumber,
-                    Price = rec.Category.Price,
-                    Sleepingberths = rec.Category.Sleepingberths
-                })
+                .Where(rec => rec.Available == model.Available)
+                .Select(CreateFullModel)
                 .ToList();
             }
         }
@@ -65,16 +45,8 @@ namespace DatabaseImplement.Implements
             using (var context = new HotelContext())
             {
                 var client = context.Room
-                .FirstOrDefault(rec => rec.Id == model.Id);
-                return client != null ?
-                new RoomViewModel
-                {
-                    Id = client.Id,
-                    Available = Convert.ToBoolean(client.Available),
-                    Categoryid = client.Categoryid,
-                    Number = client.Number
-                } :
-                null;
+                .FirstOrDefault(rec => rec.Id == model.Id || rec.Number == model.Number);
+                return client != null ? CreateModel(client) : null;
             }
         }
 
@@ -118,12 +90,32 @@ namespace DatabaseImplement.Implements
             }
         }
 
-        private Room CreateModel(RoomBindingModel model, Room client)
+        private Room CreateModel(RoomBindingModel model, Room room)
         {
-            client.Available = new BitArray(1, model.Available);
-            client.Categoryid = model.Categoryid;
-            client.Number = model.Number;
-            return client;
+            room.Available =  model.Available;
+            room.Categoryid = model.Categoryid;
+            room.Number = model.Number.Value;
+            return room;
+        }
+
+        private RoomViewModel CreateModel(Room room)
+        {
+            RoomViewModel model = new RoomViewModel();
+            model.Id = room.Id;
+            model.Available = room.Available;
+            model.Categoryid = room.Categoryid;
+            model.Number = room.Number;
+            return model;
+        }
+
+        private RoomViewModel CreateFullModel(Room room)
+        {
+            RoomViewModel model = CreateModel(room);
+            model.Type = room.Category.Type;
+            model.RoomNumber = room.Category.Roomnumber;
+            model.Price = room.Category.Price;
+            model.Sleepingberths = room.Category.Sleepingberths;
+            return model;
         }
     }
 }

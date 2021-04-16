@@ -40,6 +40,8 @@ namespace HotelView
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<IRoomStorage, RoomStorage>(new
             HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStaffStorage, StaffStorage>(new
+            HierarchicalLifetimeManager());
 
             currentContainer.RegisterType<AccountingLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ClientLogic>(new HierarchicalLifetimeManager());

@@ -46,8 +46,7 @@ namespace DatabaseImplement.Implements
             {
                 var client = context.Client.Include(x => x.Accounting)
                 .FirstOrDefault(rec => rec.Id == model.Id || rec.Email == model.Email);
-                return client != null ? CreateModel(client) :
-                null;
+                return client != null ? CreateModel(client) : null;
             }
         }
 
@@ -116,7 +115,7 @@ namespace DatabaseImplement.Implements
             model.Birthday = client.Birthday;
             model.Email = client.Email;
             model.Password = client.Password;
-            model.Status = (UserRoles)Enum.Parse(typeof(UserRoles), client.Status.ToString());           
+            model.Status = (UserRoles)client.Status;           
             return model;
         }
     }

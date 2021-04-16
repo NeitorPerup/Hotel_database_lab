@@ -18,7 +18,7 @@ namespace DatabaseImplement.Models
 
         public int Id { get; set; }
         public int Number { get; set; }
-        public BitArray Available { get; set; }
+        public bool Available { get; set; }
         public int Categoryid { get; set; }
 
         public virtual Category Category { get; set; }

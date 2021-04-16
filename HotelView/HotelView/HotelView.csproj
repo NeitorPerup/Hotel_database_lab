@@ -183,11 +183,53 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPost.Designer.cs">
+      <DependentUpon>FormPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPosts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPosts.Designer.cs">
+      <DependentUpon>FormPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRegister.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRentRoomDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRentRoomDate.Designer.cs">
+      <DependentUpon>FormRentRoomDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRoom.Designer.cs">
+      <DependentUpon>FormRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRooms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRooms.Designer.cs">
+      <DependentUpon>FormRooms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStaff.Designer.cs">
+      <DependentUpon>FormStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStaffs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStaffs.Designer.cs">
+      <DependentUpon>FormStaffs.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,8 +251,29 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPost.resx">
+      <DependentUpon>FormPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPosts.resx">
+      <DependentUpon>FormPosts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRentRoomDate.resx">
+      <DependentUpon>FormRentRoomDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRoom.resx">
+      <DependentUpon>FormRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRooms.resx">
+      <DependentUpon>FormRooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStaff.resx">
+      <DependentUpon>FormStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStaffs.resx">
+      <DependentUpon>FormStaffs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

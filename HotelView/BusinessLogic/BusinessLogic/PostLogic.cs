@@ -21,7 +21,7 @@ namespace BusinessLogic.BusinessLogic
             {
                 return _clientStorage.GetFullList();
             }
-            if (model.Id.HasValue)
+            if (model.Id.HasValue || model.Name != null)
             {
                 return new List<PostViewModel> { _clientStorage.GetElement(model) };
             }
@@ -36,7 +36,7 @@ namespace BusinessLogic.BusinessLogic
             });
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть учётная запись");
+                throw new Exception("Уже есть такая должность");
             }
             if (model.Id.HasValue)
             {

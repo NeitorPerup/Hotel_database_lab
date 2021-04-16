@@ -21,7 +21,7 @@ namespace BusinessLogic.BusinessLogic
             {
                 return _roomStorage.GetFullList();
             }
-            if (model.Id.HasValue)
+            if (model.Id.HasValue || model.Number.HasValue)
             {
                 return new List<RoomViewModel> { _roomStorage.GetElement(model) };
             }
@@ -36,6 +36,8 @@ namespace BusinessLogic.BusinessLogic
             }
             else
             {
+                if (_roomStorage.GetElement(model)?.Number == model.Number)
+                    throw new Exception("Комната с таким номером уже существует");
                 _roomStorage.Insert(model);
             }
         }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Unity;
 using BusinessLogic.BusinessLogic;
 using BusinessLogic.BindingModels;
 using BusinessLogic.ViewModels;
@@ -90,7 +89,7 @@ namespace HotelView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка",
+                MessageBox.Show(ex.InnerException?.Message, "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }

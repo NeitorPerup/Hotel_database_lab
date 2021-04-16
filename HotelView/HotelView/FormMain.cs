@@ -48,22 +48,61 @@ namespace HotelView
             return true;
         }
 
-        private void buttonSignUp_Click(object sender, EventArgs e)
+        private void комнатыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormRegister>();
+            string message = AdminCheck();
+            if (message != null)
+            {
+                MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var form = Container.Resolve<FormRooms>();
             form.ShowDialog();
         }
 
-        private void buttonSignIn_Click(object sender, EventArgs e)
+        private void категорииToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormAutorization>();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                MessageBox.Show("Успешно", "Авторизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string message = AdminCheck();
+            if (message != null){
+                MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            var form = Container.Resolve<FormCategories>();
+            form.ShowDialog();
         }
 
-        private void buttonClientData_Click(object sender, EventArgs e)
+        private void персоналToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string message = AdminCheck();
+            if (message != null)
+            {
+                MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var form = Container.Resolve<FormStaffs>();
+            form.ShowDialog();
+        }
+
+        private void должностиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string message = AdminCheck();
+            if (message != null)
+            {
+                MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var form = Container.Resolve<FormPosts>();
+            form.ShowDialog();
+        }
+
+        private string AdminCheck()
+        {
+            if (Program.Client == null){ return "Необходимо авторизироваться"; }
+            if (Program.Client.Status != UserRoles.Администратор) { return "Недостаточно прав"; }
+            return null;
+        }
+
+        private void личныеДанныеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Program.Client == null)
             {
@@ -74,7 +113,7 @@ namespace HotelView
             form.ShowDialog();
         }
 
-        private void ButtonAddRoom_Click(object sender, EventArgs e)
+        private void снятьКомнатуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Program.Client == null)
             {
@@ -90,35 +129,29 @@ namespace HotelView
             form.ShowDialog();
         }
 
-        private void комнатыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void отчёт1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void категорииToolStripMenuItem_Click(object sender, EventArgs e)
+        private void отчёт2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.Client == null)
+
+        }
+
+        private void входToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            var form = Container.Resolve<FormAutorization>();
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Необходимо авторизироваться", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Успешно", "Авторизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (Program.Client.Status != UserRoles.Администратор)
-            {
-                MessageBox.Show("Недостаточно прав", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            var form = Container.Resolve<FormCategories>();
+        }
+
+        private void регистрацияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormRegister>();
             form.ShowDialog();
-        }
-
-        private void персоналToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void должностиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

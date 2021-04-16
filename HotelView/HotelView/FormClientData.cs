@@ -48,10 +48,12 @@ namespace HotelView
                     Name = textBoxName.Text,
                     Surname = textBoxSurname.Text,
                     Middlename = textBoxMiddlename.Text,
-                    Pasport = (textBoxPasport.Text),
-                    Birthday = dateTimePicker.Value
+                    Pasport = textBoxPasport.Text,
+                    Birthday = dateTimePicker.Value,
+                    Status = Program.Client.Status
                 };
                 _clientLogic.CreateOrUpdate(client);
+                Program.Client = _clientLogic.Read(client)?[0];
                 MessageBox.Show("Изменено", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

@@ -119,7 +119,7 @@ namespace DatabaseImplement
                 entity.Property(e => e.Pasport)
                     .IsRequired()
                     .HasColumnName("pasport")
-                    .HasMaxLength(20);
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.Password)
                     .IsRequired()
@@ -158,10 +158,7 @@ namespace DatabaseImplement
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Available)
-                    .IsRequired()
-                    .HasColumnName("available")
-                    .HasColumnType("bit(1)");
+                entity.Property(e => e.Available).HasColumnName("available");
 
                 entity.Property(e => e.Categoryid).HasColumnName("categoryid");
 

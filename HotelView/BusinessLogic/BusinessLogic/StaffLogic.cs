@@ -30,14 +30,6 @@ namespace BusinessLogic.BusinessLogic
 
         public void CreateOrUpdate(StaffBindingModel model)
         {
-            var element = _clientStorage.GetElement(new StaffBindingModel
-            {
-                Name = model.Name
-            });
-            if (element != null && element.Id != model.Id)
-            {
-                throw new Exception("Уже есть учётная запись");
-            }
             if (model.Id.HasValue)
             {
                 _clientStorage.Update(model);

@@ -15,14 +15,7 @@ namespace DatabaseImplement.Implements
         {
             using (var context = new HotelContext())
             {
-                return context.Post.Include(x => x.Staff).Select(rec => new PostViewModel
-                {
-                    Id = rec.Id,
-                    Count = rec.Count,
-                    Salary = rec.Salary,
-                    Name = rec.Name,
-                    Staff = rec.Staff.ToDictionary(x => x.Id, x => x.Name)
-                })
+                return context.Post.Include(x => x.Staff).Select(CreateModel)
                 .ToList();
             }
         }
@@ -37,14 +30,7 @@ namespace DatabaseImplement.Implements
             {
                 return context.Post
                 .Where(rec => rec.Salary == model.Salary)
-                .Select(rec => new PostViewModel
-                {
-                    Id = rec.Id,
-                    Count = rec.Count,
-                    Salary = rec.Salary,
-                    Name = rec.Name,
-                    Staff = rec.Staff.ToDictionary(x => x.Id, x => x.Name)
-                })
+                .Select(CreateModel)
                 .ToList();
             }
         }
@@ -58,16 +44,8 @@ namespace DatabaseImplement.Implements
             using (var context = new HotelContext())
             {
                 var accounting = context.Post
-                .FirstOrDefault(rec => rec.Id == model.Id);
-                return accounting != null ?
-                new PostViewModel
-                {
-                    Id = accounting.Id,
-                    Count = accounting.Count,
-                    Salary = accounting.Salary,
-                    Name = accounting.Name,
-                    Staff = accounting.Staff.ToDictionary(x => x.Id, x => x.Name)
-                } :
+                .FirstOrDefault(rec => rec.Id == model.Id || rec.Name == model.Name);
+                return accounting != null ? CreateModel(accounting) :
                 null;
             }
         }
@@ -112,12 +90,23 @@ namespace DatabaseImplement.Implements
             }
         }
 
-        private Post CreateModel(PostBindingModel model, Post accounting, HotelContext database)
+        private Post CreateModel(PostBindingModel model, Post post, HotelContext context)
         {
-            accounting.Count = model.Count;
-            accounting.Salary = model.Salary;
-            accounting.Name = model.Name;
-            return accounting;
+            post.Count = post.Count;
+            post.Salary = model.Salary;
+            post.Name = model.Name;
+            return post;
+        }
+
+        private PostViewModel CreateModel(Post post)
+        {
+            PostViewModel model = new PostViewModel();
+            model.Id = post.Id;
+            model.Name = post.Name;
+            model.Salary = post.Salary;
+            model.Count = post.Count;
+            model.Staff = post.Staff.ToDictionary(x => x.Id, x => x.Name);
+            return model;
         }
     }
 }

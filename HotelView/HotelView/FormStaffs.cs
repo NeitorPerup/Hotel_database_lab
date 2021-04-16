@@ -10,21 +10,17 @@ using System.Windows.Forms;
 
 namespace HotelView
 {
-    public partial class FormCategories : Form
+    public partial class FormStaffs : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly CategoryLogic logic;
-        public FormCategories(CategoryLogic categoryLogic)
-        {
-            logic = categoryLogic;
-            InitializeComponent();
-        }
+        private readonly StaffLogic logic;
 
-        private void FormCategories_Load(object sender, EventArgs e)
+        public FormStaffs(StaffLogic staff)
         {
-            LoadData();
+            logic = staff;
+            InitializeComponent();
         }
 
         private void LoadData()
@@ -35,13 +31,19 @@ namespace HotelView
                 dataGridView.DataSource = list;
                 dataGridView.Columns[0].Visible = false;
                 dataGridView.Columns[5].Visible = false;
+                dataGridView.Columns[6].Visible = false;
                 dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
 
+        private void FormStaffs_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCategory>();
+            var form = Container.Resolve<FormStaff>();
             form.ShowDialog();
             LoadData();
         }
@@ -50,7 +52,7 @@ namespace HotelView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormCategory>();
+                var form = Container.Resolve<FormStaff>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 form.ShowDialog();
                 LoadData();
@@ -61,7 +63,7 @@ namespace HotelView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                logic.Delete(new CategoryBindingModel { Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value) });
+                logic.Delete(new StaffBindingModel { Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value) });
                 LoadData();
             }
         }
