@@ -44,11 +44,12 @@ namespace HotelView
                         {
                             Clientid = Program.Client.Id,
                             Roomid = room.Id,
-                            Cost = (dateTo.Date - dateFrom.Date).Days,
+                            Cost = ((dateTo.Date - dateFrom.Date).Days * room.Price).Value,
                             Startdate = dateFrom,
                             Enddate = dateTo
                         });
                         MessageBox.Show("Успешно", "Комната снята", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DialogResult = DialogResult.OK;
                         Close();
                     }
                     catch (Exception ex)

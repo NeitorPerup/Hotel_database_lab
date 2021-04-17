@@ -41,7 +41,9 @@ namespace HotelView
             this.отчёт2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.входToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.регистрацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -117,16 +119,16 @@ namespace HotelView
             // отчёт1ToolStripMenuItem
             // 
             this.отчёт1ToolStripMenuItem.Name = "отчёт1ToolStripMenuItem";
-            this.отчёт1ToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.отчёт1ToolStripMenuItem.Text = "Отчёт 1";
-            this.отчёт1ToolStripMenuItem.Click += new System.EventHandler(this.отчёт1ToolStripMenuItem_Click);
+            this.отчёт1ToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.отчёт1ToolStripMenuItem.Text = "Комнаты";
+            this.отчёт1ToolStripMenuItem.Click += new System.EventHandler(this.ВсеКомнатыToolStripMenuItem_Click);
             // 
             // отчёт2ToolStripMenuItem
             // 
             this.отчёт2ToolStripMenuItem.Name = "отчёт2ToolStripMenuItem";
-            this.отчёт2ToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.отчёт2ToolStripMenuItem.Text = "Отчёт 2";
-            this.отчёт2ToolStripMenuItem.Click += new System.EventHandler(this.отчёт2ToolStripMenuItem_Click);
+            this.отчёт2ToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.отчёт2ToolStripMenuItem.Text = "Счета";
+            this.отчёт2ToolStripMenuItem.Click += new System.EventHandler(this.СчетаToolStripMenuItem_Click);
             // 
             // входToolStripMenuItem
             // 
@@ -142,16 +144,28 @@ namespace HotelView
             this.регистрацияToolStripMenuItem.Text = "Регистрация";
             this.регистрацияToolStripMenuItem.Click += new System.EventHandler(this.регистрацияToolStripMenuItem_Click);
             // 
+            // dataGridView
+            // 
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(0, 27);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(653, 341);
+            this.dataGridView.TabIndex = 16;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(653, 393);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.menuStrip1);
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,6 +184,7 @@ namespace HotelView
         private System.Windows.Forms.ToolStripMenuItem отчёт2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem входToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem регистрацияToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
 

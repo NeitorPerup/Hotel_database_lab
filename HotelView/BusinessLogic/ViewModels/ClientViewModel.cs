@@ -15,6 +15,6 @@ namespace BusinessLogic.ViewModels
         public string Email { get; set; }
         public string Password { get; set; }
         public UserRoles Status { get; set; }
-        public Dictionary<int, int> Accounting { get; set; } // accountingId, cost
+        public Dictionary<int, decimal> Accounting { get; set; } // accountingId, cost
     }
 }

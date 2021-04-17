@@ -44,9 +44,9 @@ namespace DatabaseImplement.Implements
             }
             using (var context = new HotelContext())
             {
-                var client = context.Room
+                var client = context.Room.Include(x => x.Category)
                 .FirstOrDefault(rec => rec.Id == model.Id || rec.Number == model.Number);
-                return client != null ? CreateModel(client) : null;
+                return client != null ? CreateFullModel(client) : null;
             }
         }
 

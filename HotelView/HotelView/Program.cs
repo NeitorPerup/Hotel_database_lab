@@ -42,6 +42,8 @@ namespace HotelView
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<IStaffStorage, StaffStorage>(new
             HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportStorage, ReportStorage>(new
+            HierarchicalLifetimeManager());
 
             currentContainer.RegisterType<AccountingLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ClientLogic>(new HierarchicalLifetimeManager());
@@ -49,7 +51,7 @@ namespace HotelView
             currentContainer.RegisterType<PostLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<RoomLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<StaffLogic>(new HierarchicalLifetimeManager());
-
+            currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }

@@ -10,7 +10,7 @@ namespace DatabaseImplement.Models
     public partial class Accounting
     {
         public int Id { get; set; }
-        public int Cost { get; set; }
+        public decimal Cost { get; set; }
         public DateTime Startdate { get; set; }
         public DateTime Enddate { get; set; }
         public int Clientid { get; set; }

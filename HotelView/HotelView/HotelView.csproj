@@ -147,6 +147,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormReportRooms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportRooms.Designer.cs">
+      <DependentUpon>FormReportRooms.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAutorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +213,12 @@
     <Compile Include="FormRentRoomDate.Designer.cs">
       <DependentUpon>FormRentRoomDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportAccounting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportAccounting.Designer.cs">
+      <DependentUpon>FormReportAccounting.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +245,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormReportRooms.resx">
+      <DependentUpon>FormReportRooms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAutorization.resx">
       <DependentUpon>FormAutorization.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRentRoomDate.resx">
       <DependentUpon>FormRentRoomDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportAccounting.resx">
+      <DependentUpon>FormReportAccounting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRoom.resx">
       <DependentUpon>FormRoom.cs</DependentUpon>

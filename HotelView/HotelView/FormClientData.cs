@@ -54,7 +54,9 @@ namespace HotelView
                 };
                 _clientLogic.CreateOrUpdate(client);
                 Program.Client = _clientLogic.Read(client)?[0];
-                MessageBox.Show("Изменено", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Изменено", "Личные данные", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {

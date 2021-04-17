@@ -19,11 +19,23 @@ namespace HotelView
 
         private readonly ClientLogic _clientLogic;
 
-        public FormMain(ClientLogic clientLogic)
+        private readonly ReportLogic _reportLogic;
+
+        public FormMain(ClientLogic clientLogic, ReportLogic report)
         {
             _clientLogic = clientLogic;
+            _reportLogic = report;
             Program.Client = _clientLogic.Read(new ClientBindingModel { Email = "Admin" })?[0];
             InitializeComponent();
+            RefreshDataGrid();
+        }
+
+        private void RefreshDataGrid()
+        {
+            var list = _reportLogic.GetClientInfo(new ReportBindingModel { ClientId = Program.Client?.Id });
+            if (list == null) { return; }
+            dataGridView.DataSource = list;
+            dataGridView.Columns[0].Visible = false;
         }
 
         private bool ClientDataCheck()
@@ -110,7 +122,8 @@ namespace HotelView
                 return;
             }
             var form = Container.Resolve<FormClientData>();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+                RefreshDataGrid();
         }
 
         private void снятьКомнатуToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,17 +139,20 @@ namespace HotelView
                 return;
             }
             var form = Container.Resolve<FormClientRentRoom>();
+            if (form.ShowDialog() == DialogResult.OK)
+                RefreshDataGrid();
+        }
+
+        private void ВсеКомнатыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportRooms>();
             form.ShowDialog();
         }
 
-        private void отчёт1ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void СчетаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void отчёт2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            var form = Container.Resolve<FormReportAccounting>();
+            form.ShowDialog();
         }
 
         private void входToolStripMenuItem_Click(object sender, EventArgs e)
@@ -145,13 +161,15 @@ namespace HotelView
             if (form.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Успешно", "Авторизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshDataGrid();
             }
         }
 
         private void регистрацияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormRegister>();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+                RefreshDataGrid();
         }
     }
 }

@@ -24,8 +24,8 @@ namespace HotelView
         private void buttonSave_Click(object sender, EventArgs e)
         {
             var DateFrom = dateTimePickerFrom.Value;
-            var DateTo = dateTimePickerFrom.Value;
-            if (DateFrom.Date > DateTo.Date)
+            var DateTo = dateTimePickerTo.Value;
+            if (DateFrom.Date >= DateTo.Date)
             {
                 MessageBox.Show("Дата выселения должна быть больше даты заселения", "Ошибка", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
